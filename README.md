@@ -1,7 +1,4 @@
 # XamarinFormsReactiveUIDemo
-Xamarin sample app with ReactiveUI
-
-# XamarinFormsReactiveUIDemo
 
 ***
 
