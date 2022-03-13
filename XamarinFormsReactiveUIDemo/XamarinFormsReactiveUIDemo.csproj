@@ -19,5 +19,9 @@
   <ItemGroup>
     <None Remove="ReactiveUI" />
     <None Remove="ReactiveUI.XamForms" />
+    <None Remove="Converters\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Converters\" />
   </ItemGroup>
 </Project>

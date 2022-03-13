@@ -13,6 +13,8 @@ namespace XamarinFormsReactiveUIDemo
         public MainPage()
         {
             InitializeComponent();
+
+            //BindingContext = new LoginViewModel();
         }
     }
 }
