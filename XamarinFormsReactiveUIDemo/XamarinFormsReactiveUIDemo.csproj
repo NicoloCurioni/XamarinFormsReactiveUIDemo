@@ -20,8 +20,10 @@
     <None Remove="ReactiveUI" />
     <None Remove="ReactiveUI.XamForms" />
     <None Remove="Converters\" />
+    <None Remove="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Converters\" />
+    <Folder Include="Pages\" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
 </Project>

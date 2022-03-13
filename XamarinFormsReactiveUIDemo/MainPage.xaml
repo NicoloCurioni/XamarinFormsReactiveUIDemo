@@ -5,16 +5,13 @@
              x:Class="XamarinFormsReactiveUIDemo.MainPage"
              xmlns:converters="clr-namespace:XamarinFormsReactiveUIDemo.Converters"
              BindingContext="{StaticResource loginViewModel}">
-    <ContentPage.Resources>
+    <!--<ContentPage.Resources>
         <ResourceDictionary>
             <local:LoginViewModel x:Key="loginViewModel" />
             <converters:StringColorConverter x:Key="stringToColorConverter" />
         </ResourceDictionary>
-    </ContentPage.Resources>
+    </ContentPage.Resources>-->
     <StackLayout Padding="30">
-        <!--.COntrol to Control Binding Example -->
-        <!--<Slider x:Name="slider" Minimum="0" Maximum="20" Margin="2" />-->
-        <Entry Margin="2" Text="{Binding Path=Username, Mode=TwoWay}" />
-        <Label TextColor="{Binding Username, Converter={StaticResource stringToColorConverter}}" Text="{Binding Path=Username, Mode=OneWay}" Margin="2" />
+        <Label TextColor="Black" Text="Username" Margin="2" />
     </StackLayout>
 </ContentPage>

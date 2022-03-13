@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:XamarinFormsReactiveUIDemo.ViewModels"
+    BindingContext="{StaticResource colorsViewModel}"
+    x:Class="XamarinFormsReactiveUIDemo.Pages.ColorsDemoPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <vm:ColorsViewModel x:Key="colorsViewModel" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout Padding="30">
+            <Label Text="Red" Margin="3" />
+            <Slider Minimum="0" Maximum="255" Value="{Binding Red, Mode=TwoWay}" Margin="3"/>
+
+             <Label Text="Green" Margin="3" />
+            <Slider Minimum="0" Maximum="255" Value="{Binding Green, Mode=TwoWay}" Margin="3" />
+
+             <Label Text="Blue" Margin="3" />
+            <Slider Minimum="0" Maximum="255" Value="{Binding Blue, Mode=TwoWay}"  Margin="3" />
+            <BoxView VerticalOptions="FillAndExpand" Margin="10" BackgroundColor="{Binding BackgroundColor, Mode=OneWay}" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
