@@ -11,6 +11,7 @@ namespace XamarinFormsReactiveUIDemo
         {
             InitializeComponent();
 
+            new AppBootstrapper();
             MainPage = new ContactsPage();
         }
 

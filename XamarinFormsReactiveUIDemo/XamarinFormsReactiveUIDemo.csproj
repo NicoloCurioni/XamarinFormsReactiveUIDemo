@@ -19,5 +19,9 @@
   <ItemGroup>
     <None Remove="ReactiveUI" />
     <None Remove="ReactiveUI.XamForms" />
+    <None Remove="Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Services\" />
   </ItemGroup>
 </Project>

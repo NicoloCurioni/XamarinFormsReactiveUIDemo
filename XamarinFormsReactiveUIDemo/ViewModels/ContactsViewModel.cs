@@ -5,27 +5,26 @@ using System.Linq;
 using System.Reactive.Linq;
 using ReactiveUI;
 using XamarinFormsReactiveUIDemo.Models;
+using XamarinFormsReactiveUIDemo.Services;
 
 namespace XamarinFormsReactiveUIDemo.ViewModels
 {
     public class ContactsViewModel : ReactiveObject
     {
-        private List<Contact> _samples = new List<Contact>
-        {
-            new Contact { FullName = "Mario Rossi", Email = "mariotest.rossi@test.com", Phone = "0001234567" },
-            new Contact { FullName = "John Appleseed", Email = "john.applessed@gmail.com", Phone = "0001234567" },
-            new Contact { FullName = "Tim Cook", Email = "t.cook@yapple.com", Phone = "0001234567" }
-        };
+        private IContactsService _contactsService;
 
-        public ContactsViewModel()
+        public ContactsViewModel(IContactsService contactsService= null)
         {
-            _contacts = new ObservableCollection<Contact>(_samples);
+            _contactsService = contactsService ?? (IContactsService)Splat.Locator.Current.GetService(typeof(IContactsService));
+
+            var allContacts = _contactsService.GetAllContacts();
+            _contacts = new ObservableCollection<Contact>(allContacts);
 
             this.WhenAnyValue(vm => vm.SearchQuery)
                 .Throttle(TimeSpan.FromSeconds(1))
                 .Subscribe(query =>
                 {
-                    var filteredContacts = _samples.Where(c => c.FullName.Contains(query) || c.Phone.Contains(query) || c.Email.Contains(query)).ToList();
+                    var filteredContacts = allContacts.Where(c => c.FullName.Contains(query) || c.Phone.Contains(query) || c.Email.Contains(query)).ToList();
 
                     Contacts = new ObservableCollection<Contact>(filteredContacts);
                 });
@@ -33,7 +32,7 @@ namespace XamarinFormsReactiveUIDemo.ViewModels
             this.WhenAnyValue(vm => vm.Contacts)
                 .Select(contacts =>
                 {
-                    if (Contacts.Count == _samples.Count)
+                    if (Contacts.Count == allContacts.Count())
                         return "No filter applied";
 
                     return $"{Contacts.Count} result have been found in for '{SearchQuery}'";
