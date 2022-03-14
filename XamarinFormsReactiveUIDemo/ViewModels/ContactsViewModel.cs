@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reactive.Linq;
 using ReactiveUI;
 using XamarinFormsReactiveUIDemo.Models;
 
@@ -21,15 +22,26 @@ namespace XamarinFormsReactiveUIDemo.ViewModels
             _contacts = new ObservableCollection<Contact>(_samples);
 
             this.WhenAnyValue(vm => vm.SearchQuery)
+                .Throttle(TimeSpan.FromSeconds(1))
                 .Subscribe(query =>
                 {
                     var filteredContacts = _samples.Where(c => c.FullName.Contains(query) || c.Phone.Contains(query) || c.Email.Contains(query)).ToList();
 
                     Contacts = new ObservableCollection<Contact>(filteredContacts);
                 });
+
+            this.WhenAnyValue(vm => vm.Contacts)
+                .Select(contacts =>
+                {
+                    if (Contacts.Count == _samples.Count)
+                        return "No filter applied";
+
+                    return $"{Contacts.Count} result have been found in for '{SearchQuery}'";
+                }) 
+                .ToProperty(this, vm => vm.SearchResult, out _searchResult);     
         }
 
-        #region
+        #region Properties
         private string _searchQuery = "";
 
         public string SearchQuery
@@ -37,7 +49,10 @@ namespace XamarinFormsReactiveUIDemo.ViewModels
             get => _searchQuery;
             set { this.RaiseAndSetIfChanged(ref _searchQuery, value); }
         }
-        #endregion
+
+        private readonly ObservableAsPropertyHelper<string> _searchResult;
+
+        public string SearchResult => _searchResult.Value;
 
         private ObservableCollection<Contact> _contacts;
 
@@ -46,5 +61,6 @@ namespace XamarinFormsReactiveUIDemo.ViewModels
             get => _contacts;
             set { this.RaiseAndSetIfChanged(ref _contacts, value); }
         }
+        #endregion
     }
 }
