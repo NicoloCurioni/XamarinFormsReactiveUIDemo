@@ -2,19 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:XamarinFormsReactiveUIDemo"
-             x:Class="XamarinFormsReactiveUIDemo.MainPage"
-             xmlns:converters="clr-namespace:XamarinFormsReactiveUIDemo.Converters"
-             BindingContext="{StaticResource loginViewModel}">
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <local:LoginViewModel x:Key="loginViewModel" />
-            <converters:StringColorConverter x:Key="stringToColorConverter" />
-        </ResourceDictionary>
-    </ContentPage.Resources>
-    <StackLayout Padding="30">
-        <!--.COntrol to Control Binding Example -->
-        <!--<Slider x:Name="slider" Minimum="0" Maximum="20" Margin="2" />-->
-        <Entry Margin="2" Text="{Binding Path=Username, Mode=TwoWay}" />
-        <Label TextColor="{Binding Username, Converter={StaticResource stringToColorConverter}}" Text="{Binding Path=Username, Mode=OneWay}" Margin="2" />
+             x:Class="XamarinFormsReactiveUIDemo.MainPage">
+    <StackLayout Padding="30" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+        <Label TextColor="Black" Text="Hello, World!" />
     </StackLayout>
 </ContentPage>
