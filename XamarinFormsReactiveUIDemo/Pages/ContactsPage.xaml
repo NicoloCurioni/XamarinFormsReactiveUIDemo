@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="XamarinFormsReactiveUIDemo.Pages.ContactsPage">
+    <ContentPage.Content>
+        <StackLayout Padding="20">
+            <StackLayout Padding="10">
+                <BoxView HorizontalOptions="Center"></BoxView>
+            </StackLayout>
+            <Entry Margin="3" Placeholder="Search..." Text="{Binding SearchQuery}" />
+            <ListView HasUnevenRows="True" ItemsSource="{Binding Contacts}" Margin="2">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame CornerRadius="8" Margin="2" Padding="8">
+                                <StackLayout Spacing="3">
+                                    <Label HorizontalOptions="Center" Text="{Binding Fullname}" FontSize="Large" TextColor="Black" />
+                                    <Label HorizontalOptions="Center" Text="{Binding Email}" FontSize="Medium" TextColor="DarkGray" />
+                                    <Label HorizontalOptions="Center" Text="{Binding Phone}" FontSize="Small" TextColor="Gray" />
+                                </StackLayout>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

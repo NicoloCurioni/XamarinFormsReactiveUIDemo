@@ -1,6 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XamarinFormsReactiveUIDemo.Pages;
 
 namespace XamarinFormsReactiveUIDemo
 {
@@ -10,7 +11,7 @@ namespace XamarinFormsReactiveUIDemo
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new ContactsPage();
         }
 
         protected override void OnStart()
