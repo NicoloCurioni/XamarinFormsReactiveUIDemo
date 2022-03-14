@@ -12,7 +12,7 @@ namespace XamarinFormsReactiveUIDemo.ViewModels
 
         public IScreen HostScreen { get; }
 
-        public SecondViewModel(string message, Color color, IScreen screen = null)
+        public SecondViewModel(string message, IScreen screen = null)
         {
             HostScreen = screen ?? Locator.Current.GetService<IScreen>();
 

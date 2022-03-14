@@ -18,7 +18,7 @@ namespace XamarinFormsReactiveUIDemo.ViewModels
 
             NavigateCommand = ReactiveCommand.CreateFromObservable(() =>
             {
-                return HostScreen.Router.Navigate.Execute(new SecondViewModel(Message, Color));
+                return HostScreen.Router.Navigate.Execute(new SecondViewModel(Message));
             });
         }
 
