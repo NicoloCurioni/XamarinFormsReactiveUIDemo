@@ -11,8 +11,8 @@ namespace XamarinFormsReactiveUIDemo
         {
             InitializeComponent();
 
-            new AppBootstrapper();
-            MainPage = new ValidationDemoPage();
+            var bootstrapper = new AppBootstrapper();
+            MainPage = bootstrapper.CreateMainPage();
         }
 
         protected override void OnStart()
