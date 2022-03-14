@@ -135,7 +135,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\XamarinFormsReactiveUIDemo\XamarinFormsReactiveUIDemo.csproj">
-      <Project>{F8317F70-E9F8-4F67-8431-A307691B1327}</Project>
+      <Project>{FDA64061-50C3-43D8-813A-5600B6DE4F46}</Project>
       <Name>XamarinFormsReactiveUIDemo</Name>
     </ProjectReference>
   </ItemGroup>
