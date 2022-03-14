@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
+using System.Reactive;
 using System.Reactive.Linq;
+using System.Windows.Input;
 using ReactiveUI;
 using XamarinFormsReactiveUIDemo.Models;
 using XamarinFormsReactiveUIDemo.Services;
@@ -13,7 +16,7 @@ namespace XamarinFormsReactiveUIDemo.ViewModels
     {
         private IContactsService _contactsService;
 
-        public ContactsViewModel(IContactsService contactsService= null)
+        public ContactsViewModel(IContactsService contactsService = null)
         {
             _contactsService = contactsService ?? (IContactsService)Splat.Locator.Current.GetService(typeof(IContactsService));
 
@@ -36,8 +39,16 @@ namespace XamarinFormsReactiveUIDemo.ViewModels
                         return "No filter applied";
 
                     return $"{Contacts.Count} result have been found in for '{SearchQuery}'";
-                }) 
-                .ToProperty(this, vm => vm.SearchResult, out _searchResult);     
+                })
+                .ToProperty(this, vm => vm.SearchResult, out _searchResult);
+
+            ClearCommand = ReactiveCommand.Create(ClearSearch);
+
+            // Handle the Expectations
+            ClearCommand.ThrownExceptions.Subscribe(ex =>
+            {
+                Debug.WriteLine(ex.Message);
+            });
         }
 
         #region Properties
@@ -59,6 +70,20 @@ namespace XamarinFormsReactiveUIDemo.ViewModels
         {
             get => _contacts;
             set { this.RaiseAndSetIfChanged(ref _contacts, value); }
+        }
+        #endregion
+
+        #region Commands
+
+        public ReactiveCommand<Unit, Unit> ClearCommand { get; }
+        #endregion
+
+        #region Methods
+
+        private void ClearSearch()
+        {
+            throw new Exception("Sample Expectation");
+            //SearchQuery = string.Empty;
         }
         #endregion
     }
